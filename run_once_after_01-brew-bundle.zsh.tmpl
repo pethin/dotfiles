@@ -1,0 +1,20 @@
+#!/bin/zsh
+
+eval "$($HOME/.homebrew/bin/brew shellenv)"
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+tap "railwaycat/emacsmacport"
+
+cask_args appdir: "$HOME/Applications", require_sha: true
+
+brew "coreutils"
+brew "fd"
+brew "fzf"
+brew "git"
+brew "git-lfs"
+brew "pyenv"
+brew "ripgrep"
+brew "starship"
+
+cask "emacs-mac"
+EOF

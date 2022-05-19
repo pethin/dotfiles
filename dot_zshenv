@@ -9,7 +9,7 @@ export VOLTA_HOME="$HOME/.volta"
 path=($VOLTA_HOME/bin $path)
 
 export PYENV_ROOT="$HOME/.pyenv"
-path=($HOME/Library/Python/3.9/bin $PYENV_ROOT/bin $path)
+path=($PYENV_ROOT/bin $path)
 if type pyenv &>/dev/null
 then
   eval "$(pyenv init -)"
