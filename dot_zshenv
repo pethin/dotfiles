@@ -1,5 +1,5 @@
 typeset -U path PATH
-path=(~/.local/bin /usr/local/sbin $path)
+path=($HOME/.emacs.d/bin $HOME/.local/bin /usr/local/sbin $path)
 
 export VOLTA_HOME="$HOME/.volta"
 path=($VOLTA_HOME/bin $path)
