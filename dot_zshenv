@@ -1,5 +1,9 @@
+export HOMEBREW_NO_ANALYTICS=1
 typeset -U path PATH
-path=($HOME/.emacs.d/bin $HOME/.local/bin /usr/local/sbin $path)
+
+[ -s $HOME/.homebrew/bin/brew ] && eval "$($HOME/.homebrew/bin/brew shellenv)"
+
+path=($HOME/.emacs.d/bin $HOME/.local/bin $path)
 
 export VOLTA_HOME="$HOME/.volta"
 path=($VOLTA_HOME/bin $path)
