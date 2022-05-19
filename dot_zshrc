@@ -1,0 +1,23 @@
+fpath=($HOME/.zfunc $fpath)
+
+if type brew &>/dev/null
+then
+  fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
+fi
+
+autoload -Uz compinit
+compinit -u
+
+bindkey -e
+bindkey "\e\e[D" backward-word
+bindkey "\e\e[C" forward-word
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+alias ls='ls -G'
+
+if type starship &>/dev/null
+then
+  eval "$(starship init zsh)"
+fi

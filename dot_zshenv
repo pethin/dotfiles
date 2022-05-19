@@ -1,0 +1,16 @@
+typeset -U path PATH
+path=(~/.local/bin /usr/local/sbin $path)
+
+export VOLTA_HOME="$HOME/.volta"
+path=($VOLTA_HOME/bin $path)
+
+export PYENV_ROOT="$HOME/.pyenv"
+path=($HOME/Library/Python/3.9/bin $PYENV_ROOT/bin $path)
+if type pyenv &>/dev/null
+then
+  eval "$(pyenv init -)"
+fi
+
+[ -s $HOME/.cargo/env ] && \. $HOME/.cargo/env
+
+export PATH
