@@ -1,4 +1,10 @@
 export HOMEBREW_NO_ANALYTICS=1
+
+if [ -s $HOME/Applications/Emacs.app/Contents/MacOS/Emacs ]
+then
+  export EDITOR="$HOME/Applications/Emacs.app/Contents/MacOS/Emacs"
+fi
+
 typeset -U path PATH
 
 [ -s $HOME/.homebrew/bin/brew ] && eval "$($HOME/.homebrew/bin/brew shellenv)"
