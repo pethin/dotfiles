@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+export PYENV_ROOT="$HOME/.pyenv"
+path=($PYENV_ROOT/bin $path)
+if type pyenv &>/dev/null
+then
+  eval "$(pyenv init -)"
+fi
+
+curl -sSL https://install.python-poetry.org | POETRY_HOME=$HOME/.local python3 -
+$HOME/.local/bin/poetry completions zsh > $HOME/.zfunc/_poetry

@@ -1,6 +1,6 @@
 dotfiles
 ========
-My dotfiles based on [chezmoi](https://www.chezmoi.io).
+My dotfiles based on [chezmoi](https://www.chezmoi.io). Currently only supports macOS.
 
 Quickstart
 ----------

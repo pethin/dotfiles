@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+eval "$($HOME/.homebrew/bin/brew shellenv)"
+
+# dot_zshenv hash: {{ include "dot_zshenv" | sha256sum }}
+if type $HOME/.emacs.d/bin/doom &>/dev/null
+then
+  $HOME/.emacs.d/bin/doom env
+fi
