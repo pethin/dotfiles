@@ -1,0 +1,9 @@
+# workaround since path_helper is called after ~/.zshenv
+if [[ -x /usr/libexec/path_helper && -v ZSHENV_PATH && -v ZSHENV_MANPATH ]]
+then
+  PATH=""
+  MANPATH=""
+  eval `/usr/libexec/path_helper -s`
+  PATH="${ZSHENV_PATH:+$ZSHENV_PATH:}$PATH"
+  MANPATH="${ZSHENV_MANPATH:+$ZSHENV_MANPATH:}$MANPATH"
+fi

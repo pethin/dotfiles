@@ -24,3 +24,5 @@ fi
 [ -s $HOME/.cargo/env ] && \. $HOME/.cargo/env
 
 export PATH
+export ZSHENV_PATH=$PATH
+export ZSHENV_MANPATH=$MANPATH
