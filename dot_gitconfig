@@ -5,7 +5,6 @@
 	autoclrf = input
 	eol = lf
 	symlinks = true
-	editor = emacs
 [pull]
 	rebase = true
 [fetch]

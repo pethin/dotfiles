@@ -20,6 +20,12 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+if type nvim &>/dev/null
+then
+  alias vim="nvim"
+  alias vi="nvim"
+fi
+
 if type starship &>/dev/null
 then
   eval "$(starship init zsh)"
