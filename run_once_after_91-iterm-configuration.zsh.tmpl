@@ -1,0 +1,10 @@
+{{ if (eq .chezmoi.os "darwin") -}}
+#!/usr/bin/env zsh
+
+# Use minimal tabs
+defaults write com.googlecode.iterm2 TabStyleWithAutomaticOption 5
+
+# Set profile to chezmoi dynamic profile
+defaults write com.googlecode.iterm2 "Default Bookmark Guid" 0933148A-4922-4A53-92F6-5D93E0F2AF3F
+
+{{ end -}}
