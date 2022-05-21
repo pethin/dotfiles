@@ -3,7 +3,7 @@
 eval "$($HOME/.homebrew/bin/brew shellenv)"
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
-tap "railwaycat/emacsmacport"
+tap "homebrew/cask-fonts"
 
 cask_args appdir: "$HOME/Applications", require_sha: true
 
@@ -15,6 +15,7 @@ brew "git-lfs"
 brew "pyenv"
 brew "ripgrep"
 brew "starship"
+brew "neovim"
 
-cask "emacs-mac"
+cask "font-jetbrains-mono-nerd-font"
 EOF

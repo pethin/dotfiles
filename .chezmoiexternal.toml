@@ -1,7 +1,6 @@
 [".homebrew"]
     type = "git-repo"
     url = "https://github.com/Homebrew/brew"
-[".emacs.d"]
+[".SpaceVim"]
     type = "git-repo"
-    clone.args = [ "--depth", "1" ]
-    url = "https://github.com/doomemacs/doomemacs"
+    url = "https://github.com/SpaceVim/SpaceVim.git"
