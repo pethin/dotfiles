@@ -15,7 +15,10 @@ bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-alias ls='ls -G'
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 if type starship &>/dev/null
 then
