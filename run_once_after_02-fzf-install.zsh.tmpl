@@ -1,4 +1,7 @@
-#!/bin/zsh
+{{ if (eq .chezmoi.os "darwin") -}}
+#!/usr/bin/env zsh
 
 eval "$($HOME/.homebrew/bin/brew shellenv)"
 $(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc
+
+{{ end -}}
