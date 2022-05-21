@@ -5,6 +5,11 @@
 	autoclrf = input
 	eol = lf
 	symlinks = true
+	excludesfile = ~/.gitignore
+	attributesfile = ~/.gitattributes
+	trustctime = false
+	precomposeunicode = false
+	untrackedCache = true
 [pull]
 	rebase = true
 [fetch]
@@ -16,6 +21,7 @@
 	required = true
 [merge]
 	conflictStyle = zdiff3
+	log = true
 [sendemail]
 	smtpserver = smtp.mail.me.com
 	smtpuser = peter@phn.sh
@@ -33,3 +39,11 @@
 	autoupdate = true
 [rebase]
 	autosquash = true
+[branch]
+	sort = -committerdate
+[diff]
+  renames = copies
+[diff "bin"]
+  textconv = hexdump -v -C
+[push]
+	followTags = true
