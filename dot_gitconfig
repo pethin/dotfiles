@@ -27,3 +27,10 @@
 	signOff = yes
 [init]
 	defaultBranch = main
+[color]
+	ui = auto
+[rerere]
+	enabled = true
+	autoupdate = true
+[rebase]
+	autosquash = true
