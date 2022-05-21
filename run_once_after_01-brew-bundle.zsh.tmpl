@@ -1,4 +1,5 @@
-#!/bin/zsh
+{{ if (eq .chezmoi.os "darwin") -}}
+#!/usr/bin/env zsh
 
 eval "$($HOME/.homebrew/bin/brew shellenv)"
 
@@ -19,3 +20,5 @@ brew "neovim"
 
 cask "font-jetbrains-mono-nerd-font"
 EOF
+
+{{ end -}}
