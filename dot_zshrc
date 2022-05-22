@@ -9,13 +9,19 @@ autoload -Uz compinit
 compinit -u
 
 bindkey -e
-bindkey "\e\e[D" backward-word
-bindkey "\e\e[C" forward-word
+if [[ $TERM == "xterm-kitty" ]]
+then
+  bindkey "\e[1;3D" backward-word
+  bindkey "\e[1;3C" forward-word
+else
+  bindkey "\e\e[D" backward-word
+  bindkey "\e\e[C" forward-word
+fi
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-alias ls='ls --color=auto'
+alias ls='ls --color=auto -GFh'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'

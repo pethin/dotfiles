@@ -1,0 +1,7 @@
+{{ if (eq .chezmoi.os "darwin") -}}
+#!/usr/bin/env zsh
+
+# Enable secure keyboard entry
+defaults write net.kovidgoyal.kitty SecureKeyboardEntry 1
+
+{{ end -}}
