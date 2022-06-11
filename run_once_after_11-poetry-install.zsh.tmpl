@@ -9,6 +9,7 @@ then
 fi
 
 curl -sSL https://install.python-poetry.org | POETRY_HOME=$HOME/.local python3 -
+mkdir -p $HOME/.zfunc
 $HOME/.local/bin/poetry completions zsh > $HOME/.zfunc/_poetry
 
 {{ end -}}
