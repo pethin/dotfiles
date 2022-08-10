@@ -7,3 +7,7 @@ then
   PATH="${ZSHENV_PATH:+$ZSHENV_PATH:}$PATH"
   MANPATH="${ZSHENV_MANPATH:+$ZSHENV_MANPATH:}$MANPATH"
 fi
+
+
+# Added by Toolbox App
+export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
