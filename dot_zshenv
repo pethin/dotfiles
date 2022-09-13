@@ -24,6 +24,8 @@ else
   export EDITOR="vim"
 fi
 
+path=($HOME/Library/Application\ Support/JetBrains/Toolbox/scripts $path)
+
 export PATH
 export ZSHENV_PATH=$PATH
 export ZSHENV_MANPATH=$MANPATH
