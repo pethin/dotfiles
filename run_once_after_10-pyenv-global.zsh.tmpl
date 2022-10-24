@@ -2,7 +2,6 @@
 #!/usr/bin/env zsh
 
 global_python_version=3.10.4
-global_python_version_short=${global_python_version%.*}
 
 eval "$($HOME/.homebrew/bin/brew shellenv)"
 
@@ -15,9 +14,5 @@ fi
 
 pyenv install -s $global_python_version
 pyenv global $global_python_version
-
-mkdir -p $(brew --cellar python@$global_python_version_short)
-ln -s $HOME/.pyenv/versions/$global_python_version $(brew --cellar python@$global_python_version_short)/$global_python_version
-brew link python@$global_python_version_short
 
 {{ end -}}
