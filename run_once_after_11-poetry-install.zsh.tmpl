@@ -1,14 +1,9 @@
 {{ if (eq .chezmoi.os "darwin") -}}
 #!/usr/bin/env zsh
 
-export PYENV_ROOT="$HOME/.pyenv"
-path=($PYENV_ROOT/bin $path)
-if type pyenv &>/dev/null
-then
-  eval "$(pyenv init -)"
-fi
+eval "$($HOME/.homebrew/bin/brew shellenv)"
 
-curl -sSL https://install.python-poetry.org | POETRY_HOME=$HOME/.local python3 -
+pipx install poetry
 mkdir -p $HOME/.zfunc
 $HOME/.local/bin/poetry completions zsh > $HOME/.zfunc/_poetry
 

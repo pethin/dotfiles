@@ -1,8 +1,6 @@
 {{ if (eq .chezmoi.os "darwin") -}}
 #!/usr/bin/env zsh
 
-global_python_version=3.10.4
-
 eval "$($HOME/.homebrew/bin/brew shellenv)"
 
 export PYENV_ROOT="$HOME/.pyenv"
@@ -12,7 +10,25 @@ then
   eval "$(pyenv init -)"
 fi
 
-pyenv install -s $global_python_version
-pyenv global $global_python_version
+brew_pyenv_link() {
+  python_version=$1
+
+  pushd "$(brew --prefix python@${python_version})/Frameworks/Python.framework/Versions/${python_version}"
+  ln -sFfhv "$(pwd)" "$HOME/.pyenv/versions/${python_version}"
+  pushd bin
+  ln -sfv 2to3-${python_version} 2to3
+  ln -sfv idle${python_version} idle3
+  ln -sfv pydoc${python_version} pydoc3
+  ln -sfv python${python_version} python3
+  ln -sfv python${python_version}-config python3-config
+  popd
+  popd
+
+  pyenv rehash
+}
+
+brew install python@3.11
+brew_pyenv_link 3.11
+pyenv global 3.11
 
 {{ end -}}
