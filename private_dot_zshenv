@@ -15,10 +15,6 @@ then
   eval "$(pyenv init -)"
 fi
 
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
-export DOTNET_ROOT="$HOME/.dotnet"
-path=($DOTNET_ROOT $DOTNET_ROOT/tools $path)
-
 [ -s $HOME/.cargo/env ] && \. $HOME/.cargo/env
 
 if type nvim &>/dev/null
@@ -27,6 +23,10 @@ then
 else
   export EDITOR="vim"
 fi
+
+path=($HOME/.homebrew/opt/llvm/bin $path)
+export LDFLAGS="-L$HOME/.homebrew/opt/llvm/lib"
+export CPPFLAGS="-I$HOME/.homebrew/opt/llvm/include"
 
 path=($HOME/Library/Application\ Support/JetBrains/Toolbox/scripts $path)
 
