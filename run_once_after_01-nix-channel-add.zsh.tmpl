@@ -1,0 +1,14 @@
+{{ if (eq .chezmoi.os "darwin") -}}
+#!/usr/bin/env zsh
+
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+
+sudo -H nix-channel --add https://channels.nixos.org/nixpkgs-22.11-darwin nixpkgs
+sudo -H nix-channel --update
+
+nix-channel --add https://channels.nixos.org/nixpkgs-22.11-darwin nixpkgs
+nix-channel --update
+
+{{ end -}}

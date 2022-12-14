@@ -1,6 +1,0 @@
-[".homebrew"]
-    type = "git-repo"
-    url = "https://github.com/Homebrew/brew"
-[".SpaceVim"]
-    type = "git-repo"
-    url = "https://github.com/SpaceVim/SpaceVim.git"

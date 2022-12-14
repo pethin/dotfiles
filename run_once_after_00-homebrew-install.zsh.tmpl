@@ -1,8 +1,0 @@
-{{ if (eq .chezmoi.os "darwin") -}}
-#!/usr/bin/env zsh
-
-eval "$($HOME/.homebrew/bin/brew shellenv)"
-NONINTERACTIVE=1 brew update --force --quiet
-chmod -R go-w "$(brew --prefix)/share/zsh"
-
-{{ end -}}

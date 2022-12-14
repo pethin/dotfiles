@@ -1,0 +1,6 @@
+{{ if (eq .chezmoi.os "darwin") -}}
+#!/usr/bin/env zsh
+
+sh <(curl -L https://nixos.org/nix/install) --daemon --yes --no-channel-add
+
+{{ end -}}
