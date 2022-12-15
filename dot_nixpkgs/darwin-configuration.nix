@@ -16,6 +16,8 @@ in {
     systemPackages = [
       pkgs.coreutils
       pkgs.exa
+      pkgs.jetbrains.rider
+      pkgs.jetbrains.webstorm
       pkgs.kitty
       pkgs.rectangle
     ];
@@ -216,6 +218,8 @@ in {
   nix.package = pkgs.nixStable;
 
   nixpkgs.config = {
+    allowUnfree = true;
+
     packageOverrides = pkgs: {
       nerdfonts = pkgs.nerdfonts.override {
         fonts = [
@@ -223,6 +227,7 @@ in {
         ];
       };
     };
+
     permittedInsecurePackages = [
       "python3.10-poetry-1.2.2"
     ];
