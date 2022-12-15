@@ -202,6 +202,17 @@ in {
 
   nix.package = pkgs.nixStable;
 
+  nixpkgs.config = {
+    packageOverrides = pkgs: {
+      nerdfonts = pkgs.nerdfonts.override {
+        fonts = [
+          "JetBrainsMono"
+        ];
+      };
+    };
+  };
+
+
   programs = {
     zsh = {
       # Create /etc/zshrc that loads the nix-darwin environment.
