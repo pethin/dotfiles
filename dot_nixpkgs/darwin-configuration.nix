@@ -14,6 +14,8 @@ in {
 
   environment = {
     systemPackages = [
+      pkgs.coreutils
+      pkgs.exa
       pkgs.kitty
       pkgs.rectangle
     ];
@@ -65,7 +67,19 @@ in {
           enableCompletion = false;
           enableAutosuggestions = true;
           dotDir = ".config/zsh";
+
+	  shellAliases = {};
         };
+
+        dircolors = {
+	  enable = true;
+	  enableZshIntegration = true;
+	};
+
+	exa = {
+	  enable = true;
+	  enableAliases = true;
+	};
 
         fzf = {
           enable = true;
