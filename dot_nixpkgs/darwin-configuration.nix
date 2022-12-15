@@ -68,6 +68,19 @@ in {
           enableAutosuggestions = true;
           dotDir = ".config/zsh";
 
+          defaultKeymap = "emacs";
+	  initExtra = ''
+            if [[ $TERM == "xterm-kitty" ]]
+            then
+              bindkey "\e[1;3D" backward-word
+              bindkey "\e[1;3C" forward-word
+            else
+              bindkey "\e\e[D" backward-word
+              bindkey "\e\e[C" forward-word
+            fi
+            bindkey "^[[H" beginning-of-line
+            bindkey "^[[F" end-of-line
+          '';
 	  shellAliases = {};
         };
 
@@ -210,6 +223,9 @@ in {
         ];
       };
     };
+    permittedInsecurePackages = [
+      "python3.10-poetry-1.2.2"
+    ];
   };
 
 
