@@ -16,10 +16,6 @@ in {
     systemPackages = [
       pkgs.coreutils
       pkgs.exa
-      pkgs.jetbrains.rider
-      pkgs.jetbrains.webstorm
-      pkgs.kitty
-      pkgs.rectangle
     ];
   };
 
@@ -51,11 +47,15 @@ in {
 	  pkgs.fzf
 	  pkgs.gitAndTools.gitFull
           pkgs.git-lfs
+	  pkgs.jetbrains.rider
+          pkgs.jetbrains.webstorm
+          pkgs.kitty
 	  pkgs.nerdfonts
 	  pkgs.neovim-unwrapped
 	  pkgs.nodejs
 	  pkgs.poetry
 	  pkgs.python311
+          pkgs.rectangle
 	  pkgs.starship
           pkgs.zsh
         ];
