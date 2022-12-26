@@ -6,7 +6,6 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
 fi
 
 sudo -H nix-channel --add https://channels.nixos.org/nixpkgs-unstable nixpkgs
-sudo -H nix-channel --add https://channels.nixos.org/nixpkgs-22.11-darwin nixpkgs-22.11
 sudo -H nix-channel --update
 
 nix-channel --add https://channels.nixos.org/nixpkgs-unstable nixpkgs-unstable
