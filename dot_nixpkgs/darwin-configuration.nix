@@ -215,7 +215,7 @@ in {
     };
   };
 
-  nix.package = pkgs.nixStable;
+  nix.package = pkgs.nixUnstable;
 
   nixpkgs.config = {
     allowUnfree = true;
