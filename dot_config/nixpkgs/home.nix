@@ -128,7 +128,16 @@ in
       userEmail = "peter@phn.sh";
       userName = "Peter Nguyen";
 
+      signing = {
+        gpgPath = "/usr/local/MacGPG2/bin/gpg2";
+        key = "8A5B54B1DD1C54F15EF4900C671C34D91C985865";
+        signByDefault = true;
+      };
+
       extraConfig = {
+        tag = {
+          forceSignAnnotated = "true";
+        };
         core = {
           autoclrf = "input";
           eol = "lf";
@@ -176,7 +185,7 @@ in
         diff = {
           renames = "copies";
         };
-              "diff \"bin\"" = {
+        "diff \"bin\"" = {
           textconv = "hexdump -v -C";
         };
         push = {
