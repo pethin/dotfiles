@@ -42,8 +42,6 @@ in
       pkgsUnstable.dotnet-sdk
       pkgsUnstable.gitAndTools.gitFull
       pkgsUnstable.git-lfs
-      pkgsUnstable.jetbrains.rider
-      pkgsUnstable.jetbrains.webstorm
       pkgsUnstable.kitty
       pkgsUnstable.nerdfonts
       pkgsUnstable.nodejs
