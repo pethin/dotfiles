@@ -26,6 +26,8 @@
       # Create /etc/zshrc that loads the nix-darwin environment.
       enable = true;
       enableCompletion = false;
+      enableBashCompletion = false;
+      enableSyntaxHighlighting = false;
     };
   };
 

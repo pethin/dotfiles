@@ -40,6 +40,7 @@ in
 
     packages = [
       pkgsUnstable.dotnet-sdk
+      pkgsUnstable.fnm
       pkgsUnstable.gitAndTools.gitFull
       pkgsUnstable.git-lfs
       pkgsUnstable.kitty
@@ -68,8 +69,9 @@ in
   programs = {
     zsh = rec {
       enable = true;
-      enableCompletion = false;
+      enableCompletion = true;
       enableAutosuggestions = true;
+      enableSyntaxHighlighting = true;
       dotDir = ".config/zsh";
 
       defaultKeymap = "emacs";
@@ -84,6 +86,8 @@ in
         fi
         bindkey "^[[H" beginning-of-line
         bindkey "^[[F" end-of-line
+
+        eval "$(fnm env --use-on-cd)"
       '';
       shellAliases = {};
     };
