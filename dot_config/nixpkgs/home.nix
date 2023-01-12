@@ -43,7 +43,6 @@ in
       pkgsUnstable.fnm
       pkgsUnstable.gitAndTools.gitFull
       pkgsUnstable.git-lfs
-      pkgsUnstable.kitty
       pkgsUnstable.nerdfonts
       pkgsUnstable.nodejs
       pkgsUnstable.poetry
@@ -212,7 +211,7 @@ in
     };
   
     kitty = {
-      package = pkgsUnstable.kitty;
+      package = pkgsUnstable.kitty-themes;
       enable = true;
       theme = "Tokyo Night Storm";
       font = {
