@@ -1,25 +1,8 @@
 { config, pkgs, ... }:
 
 let
-  pkgConfig = {
-    allowUnfree = true;
-
-    packageOverrides = pkgs: rec {
-      nerdfonts = pkgs.nerdfonts.override {
-        fonts = [
-         "JetBrainsMono"
-        ];
-      };
-    };
-
-    permittedInsecurePackages = [];  
-  };
-  pkgsUnstable = import <nixpkgs-unstable> {
-    config = pkgConfig;
-  };
-
-  user = builtins.getEnv "USER";
-  home = builtins.getEnv "HOME";
+  user = "peter";
+  home = "/Users/peter";
 
   xdg_configHome = "${home}/.config";
   xdg_dataHome   = "${home}/.local/share";
@@ -27,30 +10,30 @@ let
 in
 {
   home = {
-    username = user;
-    homeDirectory = home; 
+    username = "${user}";
+    homeDirectory = "${home}"; 
 
     sessionVariables = {
       DOTNET_CLI_TELEMETRY_OPTOUT = "1";
     };
 
     sessionPath = [
-      "$HOME/.local/bin"
+      "${home}/.local/bin"
     ];
 
     packages = [
-      pkgsUnstable.dotnet-sdk
-      pkgsUnstable.fnm
-      pkgsUnstable.gitAndTools.gitFull
-      pkgsUnstable.git-lfs
-      pkgsUnstable.nerdfonts
-      pkgsUnstable.nodejs
-      pkgsUnstable.poetry
-      pkgsUnstable.python311
-      pkgsUnstable.rectangle
-      pkgsUnstable.vscodium
-      pkgsUnstable.wezterm
-      pkgsUnstable.zsh
+      pkgs.dotnet-sdk
+      pkgs.fnm
+      pkgs.gitAndTools.gitFull
+      pkgs.git-lfs
+      pkgs.nerdfonts
+      pkgs.nodejs
+      pkgs.poetry
+      pkgs.python311
+      pkgs.rectangle
+      pkgs.vscodium
+      pkgs.wezterm
+      pkgs.zsh
     ];
 
     # This value determines the Home Manager release that your
@@ -98,25 +81,25 @@ in
     };
 
     exa = {
-      package = pkgsUnstable.exa;
+      package = pkgs.exa;
       enable = true;
       enableAliases = true;
     };
 
     fzf = {
-      package = pkgsUnstable.fzf;
+      package = pkgs.fzf;
       enable = true;
       enableZshIntegration = true;
     };
 
     starship = {
-      package = pkgsUnstable.starship;
+      package = pkgs.starship;
       enable = true;
       enableZshIntegration = true;
     };
 
     neovim = {
-      package = pkgsUnstable.neovim-unwrapped;
+      package = pkgs.neovim-unwrapped;
       enable = true;
       viAlias = true;
       vimAlias = true;
@@ -125,7 +108,7 @@ in
 
     git = {
       enable = true;
-      package = pkgsUnstable.gitAndTools.gitFull;
+      package = pkgs.gitAndTools.gitFull;
 
       userEmail = "peter@phn.sh";
       userName = "Peter Nguyen";
@@ -212,7 +195,7 @@ in
     };
   
     wezterm = {
-      package = pkgsUnstable.wezterm;
+      package = pkgs.wezterm;
       enable = true;
       extraConfig = ''
         return {
@@ -743,6 +726,4 @@ in
       };
     };
   };
-
-  nixpkgs.config = pkgConfig;
 }
