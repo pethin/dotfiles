@@ -49,6 +49,7 @@ in
       pkgsUnstable.python311
       pkgsUnstable.rectangle
       pkgsUnstable.vscodium
+      pkgsUnstable.wezterm
       pkgsUnstable.zsh
     ];
 
@@ -210,25 +211,15 @@ in
       };
     };
   
-    kitty = {
-      package = pkgsUnstable.kitty-themes;
+    wezterm = {
+      package = pkgsUnstable.wezterm;
       enable = true;
-      theme = "Tokyo Night Storm";
-      font = {
-        name = "JetBrainsMono Nerd Font Mono Regular";
-        size = 12;
-      };
-      settings = {
-        bold_font = "JetBrainsMono Nerd Font Mono Bold";
-        italic_font = "JetBrainsMono Nerd Font Mono Italic";
-        bold_italic_font = "JetBrainsMono Nerd Font Mono Bold Italic";
-        update_check_interval = 0;
-        tab_bar_style = "powerline";
-        tab_bar_min_tabs = 1;
-        tab_powerline_style = "slanted";
-        tab_title_template = "\"  {fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{title}  \"";
-        window_padding_width = 6;
-      };
+      extraConfig = ''
+        return {
+	  font = wezterm.font("JetBrains Mono"),
+	  color_scheme = "tokyonight-storm",
+	}
+      '';
     };
 
     # Let Home Manager install and manage itself.
@@ -748,10 +739,6 @@ in
 
           # Randomize port on launch
           RandomPort = true;
-        };
-        "net.kovidgoyal.kitty" = {
-          # Enable secure keyboard entry
-          SecureKeyboardEntry = 1;
         };
       };
     };
