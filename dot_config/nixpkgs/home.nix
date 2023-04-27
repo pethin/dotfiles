@@ -36,7 +36,7 @@ in
       pkgs.python311
       pkgs.rectangle
       pkgs.vscodium
-      pkgs.wezterm
+      # pkgs.wezterm
       pkgs.zsh
     ];
 
@@ -203,13 +203,22 @@ in
     };
   
     wezterm = {
-      package = pkgs.wezterm;
+      package = pkgs.zsh;
       enable = true;
       extraConfig = ''
-        return {
-	  font = wezterm.font("JetBrains Mono"),
-	  color_scheme = "tokyonight-storm",
-	}
+        -- This table will hold the configuration.
+        local config = {}
+
+        -- In newer versions of wezterm, use the config_builder which will
+        -- help provide clearer error messages
+        if wezterm.config_builder then
+          config = wezterm.config_builder()
+        end
+
+        config.font = wezterm.font("JetBrains Mono")
+	config.color_scheme = "tokyonight-storm"
+
+        return config
       '';
     };
 
