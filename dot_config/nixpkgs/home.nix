@@ -9,6 +9,10 @@ let
   xdg_cacheHome  = "${home}/.cache";
 in
 {
+  imports = [
+    ./darwin-application-activation.nix
+  ];
+
   home = {
     username = "${user}";
     homeDirectory = "${home}"; 
@@ -72,7 +76,11 @@ in
 
         eval "$(fnm env --use-on-cd)"
       '';
-      shellAliases = {};
+      
+      shellAliases = {
+        nix-home-update = "nix flake update path:$HOME/.config/nixpkgs";
+        home-manager-switch = "home-manager switch --flake path:$HOME/.config/nixpkgs";
+      };
     };
 
     dircolors = {

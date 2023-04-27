@@ -1,0 +1,6 @@
+{{ if (eq .chezmoi.os "darwin") -}}
+#!/usr/bin/env zsh
+
+xcode-select -p || xcode-select --install
+
+{{ end -}}
