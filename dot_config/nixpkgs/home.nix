@@ -23,6 +23,7 @@ in
 
     sessionPath = [
       "${home}/.local/bin"
+      "${home}/Library/Application Support/JetBrains/Toolbox/scripts"
     ];
 
     packages = [
