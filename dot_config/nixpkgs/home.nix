@@ -32,12 +32,12 @@ in
       pkgs.gitAndTools.gitFull
       pkgs.git-lfs
       pkgs.nerdfonts
-      pkgs.nodejs
-      pkgs.poetry
+      pkgs.pdm
       pkgs.python311
       pkgs.rectangle
+      pkgs.temurin-bin-17
       pkgs.vscodium
-      # pkgs.wezterm
+      #pkgs.wezterm
       pkgs.zsh
     ];
 
@@ -59,7 +59,9 @@ in
       enable = true;
       enableCompletion = true;
       enableAutosuggestions = true;
-      enableSyntaxHighlighting = true;
+      syntaxHighlighting = {
+        enable = true;
+      };
       dotDir = ".config/zsh";
 
       defaultKeymap = "emacs";
@@ -221,6 +223,11 @@ in
 
         return config
       '';
+    };
+
+    java = {
+      enable = true;
+      package = pkgs.temurin-bin-17;
     };
 
     # Let Home Manager install and manage itself.
@@ -411,7 +418,7 @@ in
           AutoFillMiscellaneousForms = true;
 
           # Set search provider
-          SearchProviderShortName = "Google";
+          SearchProviderShortName = "Ecosia";
 
           # Don’t send search queries to Apple
           UniversalSearchEnabled = false;
@@ -500,6 +507,14 @@ in
           # Update extensions automatically
           InstallExtensionUpdatesAutomatically = true;
         };
+	"Apple Global Domain" = {
+	  NSPreferredWebServices = {
+	    NSWebServicesProviderWebSearch = {
+	      NSDefaultDisplayName = "Ecosia";
+              NSProviderIdentifier = "org.ecosia.www";
+	    };
+	  };
+	};
         "com.apple.mail" = {
           # Auto retry sending mail
           SuppressDeliveryFailure = true;

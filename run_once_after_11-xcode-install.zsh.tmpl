@@ -1,0 +1,11 @@
+{{ if (eq .chezmoi.os "darwin") -}}
+#!/usr/bin/env zsh
+
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+
+nix-shell -p mas --run 'mas install 497799835'
+sudo xcodebuild -license accept
+
+{{ end -}}
