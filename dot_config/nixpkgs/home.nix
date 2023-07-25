@@ -208,6 +208,8 @@ in
     wezterm = {
       package = pkgs.zsh;
       enable = true;
+      enableBashIntegration = false;
+      enableZshIntegration = false;
       extraConfig = ''
         -- This table will hold the configuration.
         local config = {}
