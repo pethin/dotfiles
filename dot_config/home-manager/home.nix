@@ -23,15 +23,18 @@ in
 
     sessionPath = [
       "${home}/.local/bin"
+      "${home}/.deno/bin"
       "${home}/Library/Application Support/JetBrains/Toolbox/scripts"
     ];
 
     packages = [
+      pkgs.deno
       pkgs.dotnet-sdk
       pkgs.fnm
       pkgs.gitAndTools.gitFull
       pkgs.git-lfs
       pkgs.nerdfonts
+      pkgs.oci-cli
       pkgs.pdm
       pkgs.python311
       pkgs.rectangle
@@ -49,7 +52,7 @@ in
     # You can update Home Manager without changing this value. See
     # the Home Manager release notes for a list of state version
     # changes in each release.
-    stateVersion = "22.11";
+    stateVersion = "23.11";
   };
 
   fonts.fontconfig.enable = true;
@@ -81,8 +84,7 @@ in
       '';
       
       shellAliases = {
-        nix-home-update = "nix flake update path:$HOME/.config/nixpkgs";
-        home-manager-switch = "home-manager switch --flake path:$HOME/.config/nixpkgs";
+        nix-home-update = "home-manager switch --recreate-lock-file";
       };
     };
 
@@ -91,8 +93,8 @@ in
       enableZshIntegration = true;
     };
 
-    exa = {
-      package = pkgs.exa;
+    eza = {
+      package = pkgs.eza;
       enable = true;
       enableAliases = true;
     };
@@ -411,7 +413,7 @@ in
 
           # Separate tabs
           ShowStandaloneTabBar = true;
-          EnableNarrowTabs = true;
+          EnableNarrowTabs = false;
 
           # AutoFill
           AutoFillFromAddressBook = true;

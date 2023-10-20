@@ -5,7 +5,6 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
   . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
 
-nix build --no-link path:$HOME/.config/nixpkgs#homeConfigurations.peter.activationPackage
-"$(nix path-info path:$HOME/.config/nixpkgs#homeConfigurations.peter.activationPackage)"/activate
+nix run home-manager/master -- init --switch
 
 {{ end -}}
