@@ -19,10 +19,13 @@ in
 
     sessionVariables = {
       DOTNET_CLI_TELEMETRY_OPTOUT = "1";
+      OPENSSL_LIB_DIR = "${pkgs.openssl.out}/lib";
+      OPENSSL_INCLUDE_DIR = "${pkgs.openssl.dev}/include";
     };
 
     sessionPath = [
       "${home}/.local/bin"
+      "${home}/.cargo/bin"
       "${home}/.deno/bin"
       "${home}/Library/Application Support/JetBrains/Toolbox/scripts"
     ];
@@ -35,9 +38,14 @@ in
       pkgs.git-lfs
       pkgs.nerdfonts
       pkgs.oci-cli
+      pkgs.openssl.bin
+      pkgs.openssl.dev
+      pkgs.openssl.out
       pkgs.pdm
-      pkgs.python311
+      pkgs.pkg-config
+      pkgs.python312
       pkgs.rectangle
+      pkgs.rustup
       pkgs.temurin-bin-17
       pkgs.vscodium
       #pkgs.wezterm
