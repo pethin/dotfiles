@@ -46,7 +46,7 @@ in
       pkgs.python312
       pkgs.rectangle
       pkgs.rustup
-      pkgs.temurin-bin-17
+      pkgs.temurin-bin-21
       pkgs.vscodium
       pkgs.wasmtime
       #pkgs.wezterm
@@ -240,7 +240,7 @@ in
 
     java = {
       enable = true;
-      package = pkgs.temurin-bin-17;
+      package = pkgs.temurin-bin-21;
     };
 
     # Let Home Manager install and manage itself.
