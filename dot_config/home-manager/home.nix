@@ -48,6 +48,7 @@ in
       pkgs.rustup
       pkgs.temurin-bin-17
       pkgs.vscodium
+      pkgs.wasmtime
       #pkgs.wezterm
       pkgs.zsh
     ];
