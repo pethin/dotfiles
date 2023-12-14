@@ -19,8 +19,15 @@ in
 
     sessionVariables = {
       DOTNET_CLI_TELEMETRY_OPTOUT = "1";
-      OPENSSL_LIB_DIR = "${pkgs.openssl.out}/lib";
-      OPENSSL_INCLUDE_DIR = "${pkgs.openssl.dev}/include";
+      LDFLAGS = "-L${home}/.nix-profile/lib";
+      CFLAGS = "-I${home}/.nix-profile/include";
+      CPPFLAGS = "-I${home}/.nix-profile/include";
+      LD_LIBRARY_PATH = "${home}/.nix-profile/lib";
+      DYLD_LIBRARY_PATH = "${home}/.nix-profile/lib";
+      C_INCLUDE_PATH = "${home}/.nix-profile/include";
+      CPLUS_INCLUDE_PATH = "${home}/.nix-profile/include";
+      PKG_CONFIG_PATH = "${home}/.nix-profile/lib/pkgconfig";
+      LIBS = "-L${home}/.nix-profile/lib -Wl,-rpath,${home}/.nix-profile/lib";
     };
 
     sessionPath = [
@@ -31,11 +38,21 @@ in
     ];
 
     packages = [
+      pkgs.bzip2.bin
+      pkgs.bzip2.dev
+      pkgs.bzip2.out
       pkgs.deno
       pkgs.dotnet-sdk
       pkgs.fnm
       pkgs.gitAndTools.gitFull
       pkgs.git-lfs
+      pkgs.libffi.dev
+      pkgs.libffi.out
+      pkgs.libxml2.bin
+      pkgs.libxml2.dev
+      pkgs.libxml2.out
+      pkgs.ncurses.out
+      pkgs.ncurses.dev
       pkgs.nerdfonts
       pkgs.oci-cli
       pkgs.openssl.bin
@@ -44,12 +61,25 @@ in
       pkgs.pdm
       pkgs.pkg-config
       pkgs.python312
+      pkgs.readline.dev
+      pkgs.readline.out
       pkgs.rectangle
       pkgs.rustup
+      pkgs.sqlite.bin
+      pkgs.sqlite.dev
+      pkgs.sqlite.out
       pkgs.temurin-bin-21
+      pkgs.tk.dev
+      pkgs.tk.out
       pkgs.vscodium
       pkgs.wasmtime
-      #pkgs.wezterm
+      pkgs.xmlsec.out
+      pkgs.xmlsec.dev
+      pkgs.xz.bin
+      pkgs.xz.dev
+      pkgs.xz.out
+      pkgs.zlib.dev
+      pkgs.zlib.out
       pkgs.zsh
     ];
 
@@ -61,7 +91,7 @@ in
     # You can update Home Manager without changing this value. See
     # the Home Manager release notes for a list of state version
     # changes in each release.
-    stateVersion = "23.11";
+    stateVersion = "24.05";
   };
 
   fonts.fontconfig.enable = true;
@@ -78,7 +108,11 @@ in
 
       defaultKeymap = "emacs";
       initExtra = ''
-        if [[ $TERM == "xterm-kitty" ]]
+        if [[ -a "$WEZTERM_EXECUTABLE_DIR/../Resources/wezterm.sh" ]]; then
+          source "$WEZTERM_EXECUTABLE_DIR/../Resources/wezterm.sh"
+        fi
+
+        if [[ $TERM == "xterm-"* ]]
         then
           bindkey "\e[1;3D" backward-word
           bindkey "\e[1;3C" forward-word
@@ -97,6 +131,10 @@ in
       };
     };
 
+    bat = {
+      enable = true;
+    };
+
     dircolors = {
       enable = true;
       enableZshIntegration = true;
@@ -106,6 +144,7 @@ in
       package = pkgs.eza;
       enable = true;
       enableAliases = true;
+      git = true;
     };
 
     fzf = {
@@ -120,12 +159,10 @@ in
       enableZshIntegration = true;
     };
 
-    neovim = {
-      package = pkgs.neovim-unwrapped;
+    helix = {
+      package = pkgs.helix;
       enable = true;
-      viAlias = true;
-      vimAlias = true;
-      vimdiffAlias = true;
+      defaultEditor = true;
     };
 
     git = {
@@ -232,7 +269,20 @@ in
         end
 
         config.font = wezterm.font("JetBrains Mono")
-	config.color_scheme = "tokyonight-storm"
+        config.color_scheme = "tokyonight-storm"
+
+        config.enable_kitty_keyboard = true
+
+        config.unix_domains = {
+          {
+            name = 'unix',
+          },
+        }
+
+        -- This causes `wezterm` to act as though it was started as
+        -- `wezterm connect unix` by default, connecting to the unix
+        -- domain on startup.
+        config.default_gui_startup_args = { 'connect', 'unix' }
 
         return config
       '';
