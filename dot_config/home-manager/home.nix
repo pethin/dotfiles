@@ -38,6 +38,7 @@ in
     ];
 
     packages = [
+      pkgs.bash
       pkgs.bzip2.bin
       pkgs.bzip2.dev
       pkgs.bzip2.out
@@ -127,7 +128,7 @@ in
       '';
       
       shellAliases = {
-        nix-home-update = "home-manager switch --recreate-lock-file";
+        nix-home-update = "nix flake update --flake ~/.config/home-manager && home-manager switch";
       };
     };
 
@@ -573,11 +574,17 @@ in
 	"Apple Global Domain" = {
 	  NSPreferredWebServices = {
 	    NSWebServicesProviderWebSearch = {
-	      NSDefaultDisplayName = "Ecosia";
-              NSProviderIdentifier = "org.ecosia.www";
+	      NSDefaultDisplayName = "Google";
+              NSProviderIdentifier = "com.google.www";
 	    };
 	  };
 	};
+        "com.apple.safari" = {
+          PrivateSearchEngineUsesNormalSearchEngineToggle = false;
+          PrivateSearchProviderShortName = "Ecosia";
+          SearchProviderShortName = "Google";
+          WBSOfflineSearchSuggestionsModelGoogleWasDefaultSearchEngineKey = true;
+        };
         "com.apple.mail" = {
           # Auto retry sending mail
           SuppressDeliveryFailure = true;

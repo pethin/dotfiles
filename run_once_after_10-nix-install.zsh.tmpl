@@ -1,6 +1,6 @@
 {{ if (eq .chezmoi.os "darwin") -}}
 #!/usr/bin/env zsh
 
-curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix/tag/v0.15.1 | sh -s -- install --no-confirm
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix/tag/v0.17.1 | sh -s -- install --no-confirm
 
 {{ end -}}
