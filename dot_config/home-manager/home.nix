@@ -28,12 +28,14 @@ in
       CPLUS_INCLUDE_PATH = "${home}/.nix-profile/include";
       PKG_CONFIG_PATH = "${home}/.nix-profile/lib/pkgconfig";
       LIBS = "-L${home}/.nix-profile/lib -Wl,-rpath,${home}/.nix-profile/lib";
+      JAVA_HOME = "${home}/.jdks/${pkgs.temurin-bin-21.version}";
     };
 
     sessionPath = [
       "${home}/.local/bin"
       "${home}/.cargo/bin"
       "${home}/.deno/bin"
+      "${home}/.jdks"
       "${home}/Library/Application Support/JetBrains/Toolbox/scripts"
     ];
 
@@ -43,7 +45,9 @@ in
       pkgs.bzip2.dev
       pkgs.bzip2.out
       pkgs.deno
-      pkgs.dotnet-sdk
+      (with pkgs.dotnetCorePackages; combinePackages [
+        sdk_8_0
+      ])
       pkgs.fnm
       pkgs.gitAndTools.gitFull
       pkgs.git-lfs
@@ -84,6 +88,8 @@ in
       pkgs.zsh
     ];
 
+    file.".jdks/${pkgs.temurin-bin-21.version}".source = pkgs.temurin-bin-21;
+
     # This value determines the Home Manager release that your
     # configuration is compatible with. This helps avoid breakage
     # when a new Home Manager release introduces backwards
@@ -101,7 +107,9 @@ in
     zsh = rec {
       enable = true;
       enableCompletion = true;
-      enableAutosuggestions = true;
+      autosuggestion = {
+        enable = true;
+      };
       syntaxHighlighting = {
         enable = true;
       };
@@ -144,7 +152,7 @@ in
     eza = {
       package = pkgs.eza;
       enable = true;
-      enableAliases = true;
+      enableZshIntegration = true;
       git = true;
     };
 
@@ -287,11 +295,6 @@ in
 
         return config
       '';
-    };
-
-    java = {
-      enable = true;
-      package = pkgs.temurin-bin-21;
     };
 
     # Let Home Manager install and manage itself.
