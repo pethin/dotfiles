@@ -140,6 +140,10 @@ in
         nix-home-update = "nix flake update --flake ~/.config/home-manager && home-manager switch";
         cp = "cp -c";
       };
+
+      envExtra = ''
+        export SSH_AUTH_SOCK="$(launchctl getenv SSH_AUTH_SOCK)"
+      '';
     };
 
     bat = {
@@ -174,6 +178,15 @@ in
       package = pkgs.helix;
       enable = true;
       defaultEditor = true;
+    };
+
+    ssh = {
+      enable = true;
+      extraConfig = ''
+        IgnoreUnknown UseKeychain
+        AddKeysToAgent yes
+        UseKeychain yes
+      '';
     };
 
     git = {
