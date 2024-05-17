@@ -137,6 +137,7 @@ in
       
       shellAliases = {
         nix-home-update = "nix flake update --flake ~/.config/home-manager && home-manager switch";
+        cp = "cp -c";
       };
     };
 
