@@ -51,6 +51,7 @@ in
       pkgs.fnm
       pkgs.gitAndTools.gitFull
       pkgs.git-lfs
+      pkgs.gnupg
       pkgs.libffi.dev
       pkgs.libffi.out
       pkgs.libxml2.bin
@@ -183,8 +184,8 @@ in
       userName = "Peter Nguyen";
 
       signing = {
-        gpgPath = "/usr/local/MacGPG2/bin/gpg2";
-        key = "8A5B54B1DD1C54F15EF4900C671C34D91C985865";
+        gpgPath = "${pkgs.gnupg}/bin/gpg2";
+        key = "EC65AD5C0718F688BE8677D5009A5BD1B3A9F56D";
         signByDefault = true;
       };
 
