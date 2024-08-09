@@ -1,6 +1,11 @@
 {{ if (eq .chezmoi.os "darwin") -}}
 #!/usr/bin/env zsh
 
-curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix/tag/v0.17.1 | sh -s -- install --no-confirm
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  echo 'nix already installed. Skipping...'
+  exit 0
+fi
+
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix/tag/v0.20.2 | sh -s -- install --no-confirm
 
 {{ end -}}
