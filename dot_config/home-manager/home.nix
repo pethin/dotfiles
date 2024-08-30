@@ -289,6 +289,9 @@ in
         if wezterm.config_builder then
           config = wezterm.config_builder()
         end
+        
+        config.initial_cols = 120
+        config.initial_rows = 30
 
         config.font = wezterm.font("JetBrains Mono")
         config.color_scheme = "tokyonight-storm"
