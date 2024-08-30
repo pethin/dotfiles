@@ -383,6 +383,8 @@ in
           AppleLocale = "en_US@currency=USD";
           AppleMeasurementUnits = "Inches";
           AppleMetricUnits = true;
+          
+          "com.apple.keyboard.fnState" = true;
 
           # Enable subpixel font rendering on non-Apple LCDs
           # Reference: https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266633501
