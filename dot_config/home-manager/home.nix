@@ -180,9 +180,9 @@ in
 
     ssh = {
       enable = true;
+      addKeysToAgent = "yes";
       extraConfig = ''
         IgnoreUnknown UseKeychain
-        AddKeysToAgent yes
         UseKeychain yes
       '';
     };
