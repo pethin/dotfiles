@@ -69,7 +69,6 @@ in
       pkgs.python312
       pkgs.readline.dev
       pkgs.readline.out
-      pkgs.rectangle
       pkgs.rustup
       pkgs.sqlite.bin
       pkgs.sqlite.dev
@@ -77,7 +76,6 @@ in
       pkgs.temurin-bin-21
       pkgs.tk.dev
       pkgs.tk.out
-      pkgs.vscodium
       pkgs.wasmtime
       pkgs.xmlsec.out
       pkgs.xmlsec.dev
