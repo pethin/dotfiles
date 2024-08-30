@@ -320,7 +320,7 @@ in
   targets = {
     darwin = {
       defaults = {
-        NSGlobalDomain = {
+        "Apple Global Domain" = {
           # Always show scrollbars
           AppleShowScrollBars = "Always";
 
@@ -348,8 +348,8 @@ in
           # Try e.g. `cd /tmp; unidecode "\x{0000}" > cc.txt; open -e cc.txt`
           NSTextShowsControlCharacters = true;
 
-          # Disable automatic termination of inactive apps
-          NSDisableAutomaticTermination = true;
+          # Enable automatic termination of inactive apps
+          NSDisableAutomaticTermination = false;
 
           # Disable automatic capitalization as it’s annoying when typing code
           NSAutomaticCapitalizationEnabled = false;
@@ -382,7 +382,7 @@ in
           AppleLanguages = ["en"];
           AppleLocale = "en_US@currency=USD";
           AppleMeasurementUnits = "Inches";
-          AppleMetricUnits = false;
+          AppleMetricUnits = true;
 
           # Enable subpixel font rendering on non-Apple LCDs
           # Reference: https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266633501
@@ -393,6 +393,13 @@ in
 
           # Add a context menu item for showing the Web Inspector in web views
           WebKitDeveloperExtras = true;
+          
+          NSPreferredWebServices = {
+	          NSWebServicesProviderWebSearch = {
+	            NSDefaultDisplayName = "Google";
+              NSProviderIdentifier = "com.google.www";
+	          };
+	        };
         };
         "com.apple.LaunchServices" = {
           # Disable the “Are you sure you want to open this application?” dialog
@@ -501,7 +508,10 @@ in
           AutoFillMiscellaneousForms = true;
 
           # Set search provider
-          SearchProviderShortName = "Ecosia";
+          SearchProviderShortName = "Google";
+          PrivateSearchEngineUsesNormalSearchEngineToggle = false;
+          PrivateSearchProviderShortName = "Ecosia";
+          WBSOfflineSearchSuggestionsModelGoogleWasDefaultSearchEngineKey = true;
 
           # Don’t send search queries to Apple
           UniversalSearchEnabled = false;
@@ -530,7 +540,7 @@ in
           WebKitStorageBlockingPolicy = 1;
 
           # Hide IP from trackers in Safari and Mail (iCloud Private Relay)
-          WBSPrivacyProxyAvailabilityTraffic = 130284;
+          WBSPrivacyProxyAvailabilityTraffic = 33422572;
 
           # Disable ad effectiveness measurement
           "WebKitPreferences.privateClickMeasurementEnabled" = false;
@@ -590,20 +600,6 @@ in
           # Update extensions automatically
           InstallExtensionUpdatesAutomatically = true;
         };
-	"Apple Global Domain" = {
-	  NSPreferredWebServices = {
-	    NSWebServicesProviderWebSearch = {
-	      NSDefaultDisplayName = "Google";
-              NSProviderIdentifier = "com.google.www";
-	    };
-	  };
-	};
-        "com.apple.safari" = {
-          PrivateSearchEngineUsesNormalSearchEngineToggle = false;
-          PrivateSearchProviderShortName = "Ecosia";
-          SearchProviderShortName = "Google";
-          WBSOfflineSearchSuggestionsModelGoogleWasDefaultSearchEngineKey = true;
-        };
         "com.apple.mail" = {
           # Auto retry sending mail
           SuppressDeliveryFailure = true;
@@ -635,10 +631,6 @@ in
               name = "APPLICATIONS";
             }
             {
-              enabled = 0;
-              name = "BOOKMARKS";
-            }
-            {
               enabled = 1;
               name = "MENU_EXPRESSION";
             }
@@ -653,6 +645,10 @@ in
             {
               enabled = 1;
               name = "MENU_DEFINITION";
+            }
+            {
+              enabled = 1;
+              name = "SOURCE";
             }
             {
               enabled = 1;
@@ -709,6 +705,14 @@ in
             {
               enabled = 1;
               name = "SYSTEM_PREFS";
+            }
+            {
+              enabled = 0;
+              name = "TIPS";
+            }
+            {
+              enabled = 0;
+              name = "BOOKMARKS";
             }
           ];
         };

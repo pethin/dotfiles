@@ -328,7 +328,7 @@ osascript -e 'tell application "System Settings" to quit'
 # Add the keyboard shortcut ⌘ + Enter to send an email in Mail.app
 # defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\U21a9"
 
-# Display emails in threaded mode, sorted by date (oldest at the top)
+# Display emails in threaded mode, sorted by date (newest at the top)
 defaults write com.apple.mail DraftsViewerAttributes -dict-add "DisplayInThreadedMode" -string "yes"
 defaults write com.apple.mail DraftsViewerAttributes -dict-add "SortedDescending" -string "yes"
 defaults write com.apple.mail DraftsViewerAttributes -dict-add "SortOrder" -string "received-date"
@@ -450,30 +450,30 @@ defaults write ~/Library/Preferences/org.gpgtools.gpgmail SignNewEmailsByDefault
 # Kill affected applications                                                  #
 ###############################################################################
 
-# for app in "Activity Monitor" \
-# 	"Address Book" \
-# 	"Calendar" \
-# 	"cfprefsd" \
-# 	"Contacts" \
-# 	"Dock" \
-# 	"Finder" \
-# 	"Google Chrome Canary" \
-# 	"Google Chrome" \
-# 	"Mail" \
-# 	"Messages" \
-# 	"Opera" \
-# 	"Photos" \
-# 	"Safari" \
-# 	"SizeUp" \
-# 	"Spectacle" \
-# 	"SystemUIServer" \
-# 	"Terminal" \
-# 	"Transmission" \
-# 	"Tweetbot" \
-# 	"Twitter" \
-# 	"iCal"; do
-# 	killall "${app}" &> /dev/null
-# done
+for app in "Activity Monitor" \
+  "Address Book" \
+  "Calendar" \
+  "cfprefsd" \
+  "Contacts" \
+  "Dock" \
+  "Finder" \
+  "Google Chrome Canary" \
+  "Google Chrome" \
+  "Mail" \
+  "Messages" \
+  "Opera" \
+  "Photos" \
+  "Safari" \
+  "SizeUp" \
+  "Spectacle" \
+  "SystemUIServer" \
+  "Terminal" \
+  "Transmission" \
+  "Tweetbot" \
+  "Twitter" \
+  "iCal"; do
+    killall "${app}" &> /dev/null
+done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
 
 {{ end -}}
