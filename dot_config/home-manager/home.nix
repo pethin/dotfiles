@@ -407,6 +407,15 @@ in
           # Disable the “Are you sure you want to open this application?” dialog
           LSQuarantine = false;
         };
+        "com.apple.WindowManager" = {
+          AppWindowGroupingBehavior = true;
+          AutoHide = true;
+          EnableStandardClickToShowDesktop = false;
+          HideDesktop = true;
+          StageManagerHideWidgets = true;
+          StandardHideDesktopIcons = true;
+          StandardHideWidgets = true;
+        };
         "com.apple.print.PrintingPrefs" = {
           # Automatically quit printer app once the print jobs complete
           "Quit When Finished" = true;
