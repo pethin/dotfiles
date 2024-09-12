@@ -376,14 +376,6 @@ in
           KeyRepeat = 1;
           InitialKeyRepeat = 15;
 
-          # Set language and text formats
-          # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
-          # `Inches`, `en_GB` with `en_US`, and `true` with `false`.
-          AppleLanguages = ["en"];
-          AppleLocale = "en_US@currency=USD";
-          AppleMeasurementUnits = "Inches";
-          AppleMetricUnits = true;
-
           "com.apple.keyboard.fnState" = true;
 
           # Enable subpixel font rendering on non-Apple LCDs
