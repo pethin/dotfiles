@@ -15,7 +15,7 @@ in
 
   home = {
     username = "${user}";
-    homeDirectory = "${home}"; 
+    homeDirectory = "${home}";
 
     sessionVariables = {
       DOTNET_CLI_TELEMETRY_OPTOUT = "1";
@@ -44,7 +44,7 @@ in
       pkgs.bzip2.bin
       pkgs.bzip2.dev
       pkgs.bzip2.out
-      pkgs.deno
+      #pkgs.deno
       (with pkgs.dotnetCorePackages; combinePackages [
         sdk_8_0
       ])
@@ -133,7 +133,7 @@ in
 
         eval "$(fnm env --use-on-cd)"
       '';
-      
+
       shellAliases = {
         nix-home-update = "nix flake update --flake ~/.config/home-manager && home-manager switch";
         cp = "cp -c";
@@ -274,7 +274,7 @@ in
         enable = true;
       };
     };
-  
+
     wezterm = {
       package = pkgs.zsh;
       enable = true;
@@ -289,7 +289,7 @@ in
         if wezterm.config_builder then
           config = wezterm.config_builder()
         end
-        
+
         config.initial_cols = 120
         config.initial_rows = 30
 
@@ -383,7 +383,7 @@ in
           AppleLocale = "en_US@currency=USD";
           AppleMeasurementUnits = "Inches";
           AppleMetricUnits = true;
-          
+
           "com.apple.keyboard.fnState" = true;
 
           # Enable subpixel font rendering on non-Apple LCDs
@@ -395,7 +395,7 @@ in
 
           # Add a context menu item for showing the Web Inspector in web views
           WebKitDeveloperExtras = true;
-          
+
           NSPreferredWebServices = {
 	          NSWebServicesProviderWebSearch = {
 	            NSDefaultDisplayName = "Google";
@@ -551,7 +551,7 @@ in
           WebKitStorageBlockingPolicy = 1;
 
           # Hide IP from trackers in Safari and Mail (iCloud Private Relay)
-          WBSPrivacyProxyAvailabilityTraffic = 33422572;
+          WBSPrivacyProxyAvailabilityTraffic = 66977004;
 
           # Disable ad effectiveness measurement
           "WebKitPreferences.privateClickMeasurementEnabled" = false;
@@ -730,7 +730,7 @@ in
         "com.apple.terminal" = {
           # Only use UTF-8 in Terminal.app
           StringEncodings = [4];
-          
+
           # Enable Secure Keyboard Entry in Terminal.app
           SecureKeyboardEntry = true;
 
