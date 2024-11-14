@@ -66,6 +66,13 @@ osascript -e 'tell application "System Settings" to quit'
 #sudo ln -s /path/to/your/image /System/Library/CoreServices/DefaultDesktop.jpg
 
 ###############################################################################
+# Apple Intelligence                                                          #
+###############################################################################
+
+AccountDSID=$(/usr/libexec/PlistBuddy -c "print Accounts:0:AccountDSID" /Users/$USERNAME/Library/Preferences/MobileMeAccounts.plist)
+/usr/bin/defaults write /Users/$USERNAME/Library/Preferences/com.apple.CloudSubscriptionFeatures.optIn $AccountDSID
+
+###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
 

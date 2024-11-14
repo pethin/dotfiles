@@ -51,7 +51,10 @@ in
       pkgs.fnm
       pkgs.gitAndTools.gitFull
       pkgs.git-lfs
+      pkgs.gitsign
       pkgs.gnupg
+      pkgs.kind
+      pkgs.kubectl
       pkgs.libffi.dev
       pkgs.libffi.out
       pkgs.libxml2.bin
@@ -201,6 +204,11 @@ in
       };
 
       extraConfig = {
+        gpg = {
+          x509 = {
+            program = "${pkgs.gitsign}/bin/gitsign";
+          };
+        };
         tag = {
           forceSignAnnotated = "true";
         };
@@ -324,6 +332,9 @@ in
           # Always show scrollbars
           AppleShowScrollBars = "Always";
 
+          # Don't automatically switch to a space when switching applications
+          AppleSpacesSwitchOnActivate = false;
+
           # Disable the over-the-top focus ring animation
           NSUseAnimatedFocusRing = false;
 
@@ -395,18 +406,27 @@ in
 	          };
 	        };
         };
+        "com.apple.Siri" = {
+          ConfirmSiriInvokedViaEitherCmdTwice = false;
+          StatusMenuVisible = true;
+        };
+        "com.apple.assistant.support" = {
+          "Search Queries Data Sharing Status" = 2;
+          "Siri Data Sharing Opt-In Status" = 2;
+        };
         "com.apple.LaunchServices" = {
           # Disable the “Are you sure you want to open this application?” dialog
           LSQuarantine = false;
         };
         "com.apple.WindowManager" = {
+          GloballyEnabled = false;
           AppWindowGroupingBehavior = true;
           AutoHide = true;
-          EnableStandardClickToShowDesktop = false;
+          EnableStandardClickToShowDesktop = true;
           HideDesktop = true;
           StageManagerHideWidgets = true;
-          StandardHideDesktopIcons = true;
-          StandardHideWidgets = true;
+          StandardHideDesktopIcons = false;
+          StandardHideWidgets = false;
         };
         "com.apple.print.PrintingPrefs" = {
           # Automatically quit printer app once the print jobs complete

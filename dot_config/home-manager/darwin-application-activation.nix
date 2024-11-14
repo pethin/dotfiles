@@ -22,7 +22,8 @@
         # In the env of Apps we build, the .apps are symlinks. We pass all of them as
         # arguments to cp and make it dereference those using -H
         
-        [ ! -z `ls "${apps}/Applications/*"` ] && $DRY_RUN_CMD cp --archive -H --dereference ${apps}/Applications/* "$HM_APPS"
+        [ ! -z `ls "${apps}/Applications/*" 2>/dev/null` ] \
+          && $DRY_RUN_CMD cp --archive -H --dereference ${apps}/Applications/* "$HM_APPS"
         $DRY_RUN_CMD chmod +w -R "$HM_APPS"
       ''
     else
