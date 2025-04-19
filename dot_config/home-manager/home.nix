@@ -69,7 +69,6 @@ in
       pkgs.openssl.dev
       pkgs.openssl.out
       pkgs.pkg-config
-      pkgs.python313
       pkgs.readline.dev
       pkgs.readline.out
       pkgs.rustup
