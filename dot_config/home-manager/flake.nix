@@ -20,16 +20,6 @@
 
           permittedInsecurePackages = [];
         };
-
-        overlays = [
-          (self: super: {
-            nerdfonts = super.nerdfonts.override {
-              fonts = [
-                "JetBrainsMono"
-              ];
-            };
-          })
-        ];
       };
     in {
       homeConfigurations.peter =

@@ -48,6 +48,7 @@ in
       (with pkgs.dotnetCorePackages; combinePackages [
         sdk_8_0
       ])
+      pkgs.ffmpeg-full
       pkgs.fnm
       pkgs.gitAndTools.gitFull
       pkgs.git-lfs
@@ -62,7 +63,7 @@ in
       pkgs.libxml2.out
       pkgs.ncurses.out
       pkgs.ncurses.dev
-      pkgs.nerdfonts
+      pkgs.nerd-fonts.jetbrains-mono
       pkgs.oci-cli
       pkgs.openssl.bin
       pkgs.openssl.dev
@@ -198,7 +199,7 @@ in
       userName = "Peter Nguyen";
 
       signing = {
-        gpgPath = "${pkgs.gnupg}/bin/gpg2";
+        signer = "${pkgs.gnupg}/bin/gpg2";
         key = "EC65AD5C0718F688BE8677D5009A5BD1B3A9F56D";
         signByDefault = true;
       };
