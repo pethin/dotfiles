@@ -28,7 +28,7 @@ in
       CPLUS_INCLUDE_PATH = "${home}/.nix-profile/include";
       PKG_CONFIG_PATH = "${home}/.nix-profile/lib/pkgconfig";
       LIBS = "-L${home}/.nix-profile/lib -Wl,-rpath,${home}/.nix-profile/lib";
-      JAVA_HOME = "${home}/.jdks/${pkgs.temurin-bin-21.version}";
+      JAVA_HOME = "${home}/.jdks/${pkgs.temurin-bin-23.version}";
     };
 
     sessionPath = [
@@ -68,18 +68,18 @@ in
       pkgs.openssl.bin
       pkgs.openssl.dev
       pkgs.openssl.out
-      pkgs.pdm
       pkgs.pkg-config
-      pkgs.python312
+      pkgs.python313
       pkgs.readline.dev
       pkgs.readline.out
       pkgs.rustup
       pkgs.sqlite.bin
       pkgs.sqlite.dev
       pkgs.sqlite.out
-      pkgs.temurin-bin-21
+      pkgs.temurin-bin-23
       pkgs.tk.dev
       pkgs.tk.out
+      pkgs.uv
       pkgs.wasmtime
       pkgs.xmlsec.out
       pkgs.xmlsec.dev
