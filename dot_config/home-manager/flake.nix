@@ -3,9 +3,11 @@
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+    fh.url = "https://flakehub.com/f/DeterminateSystems/fh/*";
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
     home-manager = {
-      url = "github:nix-community/home-manager/master";
+      url = "https://flakehub.com/f/nix-community/home-manager/*";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

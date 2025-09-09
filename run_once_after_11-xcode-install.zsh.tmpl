@@ -6,6 +6,7 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
 fi
 
 nix-shell -p mas --run 'mas install 497799835'
+sudo xcode-select -s /Applications/Xcode.app
 sudo xcodebuild -license accept
 
 {{ end -}}

@@ -100,7 +100,7 @@ in
     # You can update Home Manager without changing this value. See
     # the Home Manager release notes for a list of state version
     # changes in each release.
-    stateVersion = "24.05";
+    stateVersion = "25.05";
   };
 
   fonts.fontconfig.enable = true;
@@ -118,7 +118,7 @@ in
       dotDir = ".config/zsh";
 
       defaultKeymap = "emacs";
-      initExtra = ''
+      initContent = ''
         if [[ -a "$WEZTERM_EXECUTABLE_DIR/../Resources/wezterm.sh" ]]; then
           source "$WEZTERM_EXECUTABLE_DIR/../Resources/wezterm.sh"
         fi
