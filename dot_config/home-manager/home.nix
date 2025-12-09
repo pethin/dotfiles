@@ -9,16 +9,13 @@ let
   xdg_cacheHome  = "${home}/.cache";
 in
 {
-  imports = [
-    ./darwin-application-activation.nix
-  ];
-
   home = {
     username = "${user}";
     homeDirectory = "${home}";
 
     sessionVariables = {
       DOTNET_CLI_TELEMETRY_OPTOUT = "1";
+      FNM_COREPACK_ENABLED = "true";
       LDFLAGS = "-L${home}/.nix-profile/lib";
       CFLAGS = "-I${home}/.nix-profile/include";
       CPPFLAGS = "-I${home}/.nix-profile/include";
@@ -28,7 +25,7 @@ in
       CPLUS_INCLUDE_PATH = "${home}/.nix-profile/include";
       PKG_CONFIG_PATH = "${home}/.nix-profile/lib/pkgconfig";
       LIBS = "-L${home}/.nix-profile/lib -Wl,-rpath,${home}/.nix-profile/lib";
-      JAVA_HOME = "${home}/.jdks/${pkgs.temurin-bin-23.version}";
+      JAVA_HOME = "${home}/.jdks/${pkgs.temurin-bin-25.version}";
     };
 
     sessionPath = [
@@ -46,11 +43,11 @@ in
       pkgs.bzip2.out
       #pkgs.deno
       (with pkgs.dotnetCorePackages; combinePackages [
-        sdk_8_0
+        sdk_10_0
       ])
       pkgs.ffmpeg-full
       pkgs.fnm
-      pkgs.gitAndTools.gitFull
+      pkgs.gitFull
       pkgs.git-lfs
       pkgs.gitsign
       pkgs.gnupg
@@ -75,7 +72,7 @@ in
       pkgs.sqlite.bin
       pkgs.sqlite.dev
       pkgs.sqlite.out
-      pkgs.temurin-bin-23
+      pkgs.temurin-bin-25
       pkgs.tk.dev
       pkgs.tk.out
       pkgs.uv
@@ -100,7 +97,7 @@ in
     # You can update Home Manager without changing this value. See
     # the Home Manager release notes for a list of state version
     # changes in each release.
-    stateVersion = "25.05";
+    stateVersion = "25.11";
   };
 
   fonts.fontconfig.enable = true;
@@ -115,7 +112,7 @@ in
       syntaxHighlighting = {
         enable = true;
       };
-      dotDir = ".config/zsh";
+      dotDir = "${config.xdg.configHome}/zsh";
 
       defaultKeymap = "emacs";
       initContent = ''
@@ -183,27 +180,41 @@ in
 
     ssh = {
       enable = true;
-      addKeysToAgent = "yes";
-      extraConfig = ''
-        IgnoreUnknown UseKeychain
-        UseKeychain yes
-      '';
+      enableDefaultConfig = false;
+      matchBlocks."*" = {
+        forwardAgent = false;
+        addKeysToAgent = "yes";
+        compression = false;
+        serverAliveInterval = 0;
+        serverAliveCountMax = 3;
+        hashKnownHosts = false;
+        userKnownHostsFile = "~/.ssh/known_hosts";
+        controlMaster = "no";
+        controlPath = "~/.ssh/master-%r@%n:%p";
+        controlPersist = "no";
+        extraOptions = {
+          IgnoreUnknown = "UseKeychain";
+          UseKeychain = "yes";
+        };
+      };
     };
 
     git = {
       enable = true;
-      package = pkgs.gitAndTools.gitFull;
-
-      userEmail = "peter@phn.sh";
-      userName = "Peter Nguyen";
+      package = pkgs.gitFull;
 
       signing = {
+        format = "openpgp";
         signer = "${pkgs.gnupg}/bin/gpg2";
         key = "EC65AD5C0718F688BE8677D5009A5BD1B3A9F56D";
         signByDefault = true;
       };
 
-      extraConfig = {
+      settings = {
+        user = {
+          email = "peter@phn.sh";
+          name = "Peter Nguyen";
+        };
         gpg = {
           x509 = {
             program = "${pkgs.gitsign}/bin/gitsign";
@@ -283,6 +294,10 @@ in
       };
     };
 
+    gh = {
+      enable = true;
+    };
+
     wezterm = {
       package = pkgs.zsh;
       enable = true;
@@ -327,6 +342,12 @@ in
 
   targets = {
     darwin = {
+      linkApps = {
+        enable = false;
+      };
+      copyApps = {
+        enable = true;
+      };
       defaults = {
         "Apple Global Domain" = {
           # Always show scrollbars
