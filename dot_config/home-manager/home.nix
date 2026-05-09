@@ -43,9 +43,12 @@ in
       pkgs.bzip2.out
       #pkgs.deno
       (with pkgs.dotnetCorePackages; combinePackages [
+        sdk_8_0
+        sdk_9_0
         sdk_10_0
       ])
-      pkgs.ffmpeg-full
+      pkgs.ffmpeg-full.bin
+      pkgs.ffmpeg-full.lib
       pkgs.fnm
       pkgs.gitFull
       pkgs.git-lfs
@@ -77,6 +80,7 @@ in
       pkgs.tk.out
       pkgs.uv
       pkgs.wasmtime
+      pkgs.wget2
       pkgs.xmlsec.out
       pkgs.xmlsec.dev
       pkgs.xz.bin

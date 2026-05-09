@@ -17,6 +17,7 @@
       genPkgs = system: import nixpkgs {
         inherit system;
 
+        overlays = [];
         config = {
           allowUnfree = true;
 
@@ -26,7 +27,7 @@
     in {
       homeConfigurations.peter =
         let
-          pkgs = genPkgs "x86_64-darwin";
+          pkgs = genPkgs "aarch64-darwin";
         in home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
 

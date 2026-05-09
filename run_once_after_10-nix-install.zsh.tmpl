@@ -6,6 +6,6 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
   exit 0
 fi
 
-curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix/tag/v3.13.2 | sh -s -- install --no-confirm --determinate
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix/tag/v3.20.0 | sh -s -- install --no-confirm --determinate
 
 {{ end -}}
