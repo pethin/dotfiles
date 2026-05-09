@@ -136,6 +136,8 @@ in
         bindkey "^[[F" end-of-line
 
         eval "$(fnm env --use-on-cd)"
+
+        ssh-add --apple-use-keychain -q 2> /dev/null
       '';
 
       shellAliases = {
