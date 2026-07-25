@@ -47,6 +47,7 @@ in
         sdk_9_0
         sdk_10_0
       ])
+      pkgs.exiftool
       pkgs.ffmpeg-full.bin
       pkgs.ffmpeg-full.lib
       pkgs.fnm
@@ -54,10 +55,12 @@ in
       pkgs.git-lfs
       pkgs.gitsign
       pkgs.gnupg
+      pkgs.imagemagick
       pkgs.kind
       pkgs.kubectl
       pkgs.libffi.dev
       pkgs.libffi.out
+      pkgs.libheif
       pkgs.libxml2.bin
       pkgs.libxml2.dev
       pkgs.libxml2.out
@@ -187,18 +190,18 @@ in
     ssh = {
       enable = true;
       enableDefaultConfig = false;
-      matchBlocks."*" = {
-        forwardAgent = false;
-        addKeysToAgent = "yes";
-        compression = false;
-        serverAliveInterval = 0;
-        serverAliveCountMax = 3;
-        hashKnownHosts = false;
-        userKnownHostsFile = "~/.ssh/known_hosts";
-        controlMaster = "no";
-        controlPath = "~/.ssh/master-%r@%n:%p";
-        controlPersist = "no";
-        extraOptions = {
+      settings = {
+        "*" = {
+          ForwardAgent = false;
+          AddKeysToAgent = "yes";
+          Compression = false;
+          ServerAliveInterval = 0;
+          ServerAliveCountMax = 3;
+          HashKnownHosts = false;
+          UserKnownHostsFile = "~/.ssh/known_hosts";
+          ControlMaster = "no";
+          ControlPath = "~/.ssh/master-%r@%n:%p";
+          ControlPersist = "no";
           IgnoreUnknown = "UseKeychain";
           UseKeychain = "yes";
         };
@@ -436,6 +439,9 @@ in
         "com.apple.Siri" = {
           ConfirmSiriInvokedViaEitherCmdTwice = false;
           StatusMenuVisible = true;
+        };
+        "com.apple.Preview" = {
+          PVImageRespectDPIForScaleMode = 2;
         };
         "com.apple.assistant.support" = {
           "Search Queries Data Sharing Status" = 2;
